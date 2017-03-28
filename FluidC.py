@@ -1,10 +1,10 @@
 from collections import Counter
 import random
-from networkx.utils import groups
 
 
 def fluid_communities(G, k, max_iter=10):
     """
+    Fluid Communities algorithm
     Args:
         - G: Networkx Graph object.
             + type: networkx.Graph
@@ -87,7 +87,22 @@ def fluid_communities(G, k, max_iter=10):
 
         # If maximum iterations reached --> output actual results
         if iter_count > max_iter:
-            #print 'Exiting by max iterations!'
             break
-    return list(groups(labels).values())
+    return list(invert_dict(labels).values())
 
+
+def invert_dict(orig_dict):
+    """
+    Inverting Python dictionary keys and values: Many to one --> One to many
+    Args:
+        - orig_dict: Dictionary desired to invert.
+            + type: dict
+    Return:
+        - Inverted dictionary
+            + type: dict
+        
+    """
+    return_dict = {}
+    for v, k in orig_dict.items():
+        return_dict[k].add(v)
+    return return_dict
