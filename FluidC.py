@@ -1,7 +1,6 @@
 from collections import Counter
 import random
 from networkx.utils import groups
-from networkx.algorithms.community.quality import modularity
 
 
 def fluid_communities(G, k, max_iter=10):
