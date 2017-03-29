@@ -88,10 +88,10 @@ def fluid_communities(G, k, max_iter=10):
         # If maximum iterations reached --> output actual results
         if iter_count > max_iter:
             break
-    return list(invert_dict(labels).values())
+    return list(_invert_dict(labels).values())
 
 
-def invert_dict(orig_dict):
+def _invert_dict(orig_dict):
     """
     Inverting Python dictionary keys and values: Many to one --> One to many
     Args:
