@@ -51,13 +51,13 @@ def asyn_fluidc(G, k, max_iter=15):
             com_counter = Counter()
             # Take into account self vertex community
             try:
-                com_counter.update({communities[vertex]: max_density / com_to_numvertices[communities[vertex]]})
+                com_counter.update({communities[vertex]: density[communities[vertex]]})
             except KeyError:
                 pass
             # Gather neighbour vertex communities
             for v in G[vertex]:
                 try:
-                    com_counter.update({communities[v]: max_density / com_to_numvertices[communities[v]]})
+                    com_counter.update({communities[v]: density[communities[v]]})
                 except KeyError:
                     continue
             # Check which is the community with highest density
@@ -81,11 +81,15 @@ def asyn_fluidc(G, k, max_iter=15):
                     # Update previous community status
                     try:
                         com_to_numvertices[communities[vertex]] -= 1
+                        density[communities[vertex]] = max_density / \
+                        com_to_numvertices[communities[vertex]]
                     except KeyError:
                         pass
                     # Update new community status
                     communities[vertex] = new_com
                     com_to_numvertices[communities[vertex]] += 1
+                    density[communities[vertex]] = max_density / \
+                    com_to_numvertices[communities[vertex]]
         # If maximum iterations reached --> output actual results
         if iter_count > max_iter:
             print 'Exiting by max iterations!'
