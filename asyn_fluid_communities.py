@@ -7,12 +7,12 @@
 from collections import Counter
 import random
 
-__all__ = ['asyn_fluid_communities']
+__all__ = ['asyn_fluidc']
 
 # Optional to fix the random seed
 #random.seed(123)
 
-def asyn_flp_3(G, k, max_iter=15):
+def asyn_fluidc(G, k, max_iter=15):
     """
     Fluid Communities algorithm. A community detection algorithm.
     Args:
