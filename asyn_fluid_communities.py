@@ -12,7 +12,7 @@ __all__ = ['asyn_fluidc']
 # Optional to fix the random seed
 #random.seed(123)
 
-def asyn_fluidc(G, k, max_iter=15):
+def asyn_fluidc(G, k, max_iter=100):
     """
     Fluid Communities: A Competitive and Highly Scalable Community Detection Algorithm.
     Args:
