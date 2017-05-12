@@ -2,7 +2,7 @@
 #    Copyright (C) 2017
 #    All rights reserved.
 #    BSD license.
-"""Asynchronous fluid communities algorithms for community detection."""
+"""Asynchronous fluid communities algorithm for community detection."""
 
 from collections import Counter
 import random
@@ -14,7 +14,7 @@ __all__ = ['asyn_fluidc']
 
 def asyn_fluidc(G, k, max_iter=15):
     """
-    Fluid Communities algorithm. A community detection algorithm.
+    Fluid Communities: A Competitive and Highly Scalable Community Detection Algorithm.
     Args:
         - G: Graph to run the algorithm into.
             + type: networkx.Graph
