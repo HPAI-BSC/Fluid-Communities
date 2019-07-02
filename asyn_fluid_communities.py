@@ -97,6 +97,7 @@ def asyn_fluidc(G, k, max_iter=100):
     # Return results by grouping communities as list of vertices
     return list(_invert_dict(communities).values())
 
+
 def _invert_dict(orig_dict):
     """
     Inverting Python dictionary keys and values: Many to one --> One to many
@@ -109,5 +110,8 @@ def _invert_dict(orig_dict):
     """
     return_dict = {}
     for v, k in orig_dict.items():
-        return_dict[k].add(v)
-return return_dict
+        try:
+            return_dict[k].add(v)
+        except KeyError:
+            return_dict[k] = {v}
+    return return_dict
