@@ -9,8 +9,9 @@ import random
 
 __all__ = ['asyn_fluidc']
 
+
 # Optional to fix the random seed
-#random.seed(123)
+# random.seed(123)
 
 def asyn_fluidc(G, k, max_iter=100):
     """
@@ -43,7 +44,7 @@ def asyn_fluidc(G, k, max_iter=100):
     while cont:
         cont = False
         iter_count += 1
-		# Loop over all vertices in graph in a random order
+        # Loop over all vertices in graph in a random order
         vertices = list(G)
         random.shuffle(vertices)
         for vertex in vertices:
@@ -65,7 +66,7 @@ def asyn_fluidc(G, k, max_iter=100):
             if len(com_counter.keys()) > 0:
                 max_freq = max(com_counter.values())
                 best_communities = [com for com, freq in com_counter.items()
-                               if (max_freq - freq) < 0.0001]
+                                    if (max_freq - freq) < 0.0001]
                 # If actual vertex com in best communities, it is preserved
                 try:
                     if communities[vertex] in best_communities:
@@ -82,14 +83,14 @@ def asyn_fluidc(G, k, max_iter=100):
                     try:
                         com_to_numvertices[communities[vertex]] -= 1
                         density[communities[vertex]] = max_density / \
-                        com_to_numvertices[communities[vertex]]
+                                                       com_to_numvertices[communities[vertex]]
                     except KeyError:
                         pass
                     # Update new community status
                     communities[vertex] = new_com
                     com_to_numvertices[communities[vertex]] += 1
                     density[communities[vertex]] = max_density / \
-                    com_to_numvertices[communities[vertex]]
+                                                   com_to_numvertices[communities[vertex]]
         # If maximum iterations reached --> output actual results
         if iter_count > max_iter:
             print 'Exiting by max iterations!'
@@ -111,7 +112,7 @@ def _invert_dict(orig_dict):
     return_dict = {}
     for v, k in orig_dict.items():
         try:
-            return_dict[k].add(v)
+            return_dict[k].append(v)
         except KeyError:
-            return_dict[k] = {v}
+            return_dict[k] = [v]
     return return_dict
